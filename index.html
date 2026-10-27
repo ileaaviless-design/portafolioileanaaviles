@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ile Dircom | Dirección de Comunicación y Creatividad</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://drive.google.com/drive/folders/1YeGeKNyPG0R00nZZ0kaNz7BNYbsxu6aI?usp=sharing">
+    <link rel="preconnect" href="https://drive.google.com/drive/folders/1YeGeKNyPG0R00nZZ0kaNz7BNYbsxu6aI?usp=sharing" crossorigin>
+    <link href="https://drive.google.com/drive/folders/1YeGeKNyPG0R00nZZ0kaNz7BNYbsxu6aI?usp=sharing/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#eef1dc',       /* Crema de fondo */
+                            purple: '#b893c3',   /* Lila/Púrpura */
+                            orange: '#f39340',   /* Naranja vibrante */
+                            yellow: '#faec0b',   /* Amarillo cálido */
+                            dark: '#2c2830',     /* Texto oscuro */
+                            card: 'rgba(255, 255, 255, 0.65)'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    },
+                    animation: {
+                        'spin-slow': 'spin 18s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                        'wave-slide': 'waveSlide 12s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-12px) rotate(1.5deg)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 0.4, transform: 'scale(1)' },
+                            '50%': { opacity: 0.8, transform: 'scale(1.08)' },
+                        },
+                        waveSlide: {
+                            '0%': { transform: 'translateX(-5%) translateY(0px)' },
+                            '100%': { transform: 'translateX(5%) translateY(15px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Glassmorphism */
+        body {
+            background-color: #eef1dc;
+            color: #2c2830;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(184, 147, 195, 0.25);
+            box-shadow: 0 10px 30px -5px rgba(44, 40, 48, 0.05);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(243, 147, 64, 0.2);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: #f39340;
+            box-shadow: 0 20px 40px -10px rgba(243, 147, 64, 0.25);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #eef1dc;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b893c3;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f39340;
+        }
+
+        /* Blob Shape Masking */
+        .blob-frame {
+            border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+            transition: all 0.8s ease-in-out;
+        }
+        .blob-frame:hover {
+            border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%;
+        }
+
+        /* Fluid Gradient Text */
+        .text-gradient-brand {
+            background: linear-gradient(135deg, #2c2830 0%, #b893c3 50%, #f39340 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-vibrant {
+            background: linear-gradient(135deg, #f39340 0%, #b893c3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen text-brand-dark selection:bg-brand-orange selection:text-white">
+
+    <!-- Interactive Organic Waves Canvas Background -->
+    <canvas id="waveCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-70"></canvas>
+
+    <!-- Dynamic Header Nav -->
+    <header class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-4 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto glass-panel rounded-full px-6 py-3 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-brand-purple flex items-center justify-center text-white text-lg font-serif italic font-bold shadow-md group-hover:bg-brand-orange transition-colors">
+                    i
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-xl font-bold tracking-tight text-brand-dark flex items-center gap-1">
+                        ile <span class="text-brand-orange italic font-normal text-lg">Dircom</span>
+                    </span>
+                    <span class="text-[9px] uppercase tracking-widest text-brand-dark/60 font-semibold">Comunicación y Creatividad</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#hero" class="hover:text-brand-orange transition-colors">Inicio</a>
+                <a href="#sobre-mi" class="hover:text-brand-orange transition-colors">Sobre Mí</a>
+                <a href="#servicios" class="hover:text-brand-orange transition-colors">Servicios</a>
+                <a href="#portafolio" class="hover:text-brand-orange transition-colors">Portafolio</a>
+                <a href="#metodologia" class="hover:text-brand-orange transition-colors">Flujo Creativo</a>
+            </nav>
+
+            <!-- CTA & Actions -->
+            <div class="flex items-center gap-3">
+                <a href="#contacto" class="hidden sm:inline-flex items-center gap-2 bg-brand-orange text-white text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-brand-dark transition-all duration-300 shadow-md hover:shadow-lg">
+                    <span>Hablemos</span>
+                    <i class="fa-solid font-xs fa-arrow-right"></i>
+                </a>
+
+                <!-- Music / Vibes Toggle Button -->
+                <button id="vibesBtn" onclick="toggleVibesMode()" class="w-10 h-10 rounded-full bg-brand-yellow/80 hover:bg-brand-yellow flex items-center justify-center text-brand-dark transition-all shadow-sm" title="Activar Modo Inspiración">
+                    <i class="fa-solid fa-wand-magic-sparkles text-sm animate-pulse"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 rounded-full bg-white/50 flex items-center justify-center text-brand-dark">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden max-w-7xl mx-auto mt-2 glass-panel rounded-2xl p-6 flex-col gap-4 animate-fade-in">
+            <a href="#hero" onclick="toggleMobileMenu()" class="text-lg font-medium hover:text-brand-orange py-1">Inicio</a>
+            <a href="#sobre-mi" onclick="toggleMobileMenu()" class="text-lg font-medium hover:text-brand-orange py-1">Sobre Mí</a>
+            <a href="#servicios" onclick="toggleMobileMenu()" class="text-lg font-medium hover:text-brand-orange py-1">Servicios</a>
+            <a href="#portafolio" onclick="toggleMobileMenu()" class="text-lg font-medium hover:text-brand-orange py-1">Portafolio</a>
+            <a href="#metodologia" onclick="toggleMobileMenu()" class="text-lg font-medium hover:text-brand-orange py-1">Flujo Creativo</a>
+            <a href="#contacto" onclick="toggleMobileMenu()" class="inline-flex items-center justify-center gap-2 bg-brand-orange text-white font-semibold py-3 rounded-xl mt-2">
+                <span>Hablemos por WhatsApp</span>
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-28 px-4 md:px-8 min-h-screen flex items-center justify-center overflow-hidden">
+        
+        <!-- Ambient Color Glow Blobs -->
+        <div class="absolute top-1/4 left-10 w-72 h-72 bg-brand-purple/30 rounded-full blur-3xl -z-10 animate-pulse-glow"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-brand-orange/20 rounded-full blur-3xl -z-10 animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+        <div class="absolute top-1/3 right-1/4 w-60 h-60 bg-brand-yellow/40 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10">
+            
+            <!-- Hero Left Column Text -->
+            <div class="lg:col-span-7 flex flex-col items-start space-y-6">
+                
+                <!-- Floating Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-xs md:text-sm font-semibold text-brand-dark border border-brand-purple/40 shadow-sm animate-float">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-orange animate-ping"></span>
+                    <span>Estrategia • Dirección de Comunicación • Creatividad</span>
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold leading-[1.1] text-brand-dark tracking-tight">
+                    Donde las ideas <br>
+                    <span class="text-gradient-vibrant italic font-normal">fluyen</span> y conectan.
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-lg sm:text-xl text-brand-dark/80 max-w-xl font-light leading-relaxed">
+                    Hola, soy <strong class="font-semibold text-brand-dark">Ileana Avilés (ile)</strong>. Dirijo estrategias de comunicación y conceptos creativos visuales que transforman marcas en experiencias vivas, memorables y auténticas.
+                </p>
+
+                <!-- CTAs & Stats -->
+                <div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto">
+                    <a href="#portafolio" class="w-full sm:w-auto text-center bg-brand-dark text-white font-medium px-8 py-4 rounded-full hover:bg-brand-orange transition-all duration-300 shadow-lg hover:shadow-brand-orange/30 flex items-center justify-center gap-3">
+                        <span>Explorar Portafolio</span>
+                        <i class="fa-solid fa-arrow-down text-xs"></i>
+                    </a>
+                    
+                    <a href="https://wa.me/50372915680" target="_blank" class="w-full sm:w-auto text-center glass-card text-brand-dark font-medium px-6 py-4 rounded-full hover:border-brand-purple transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-emerald-600 text-lg"></i>
+                        <span>WhatsApp Directo</span>
+                    </a>
+                </div>
+
+                <!-- Quick Highlights -->
+                <div class="grid grid-cols-3 gap-6 pt-6 border-t border-brand-dark/10 w-full max-w-lg">
+                    <div>
+                        <span class="text-2xl md:text-3xl font-serif font-bold text-brand-orange">100%</span>
+                        <p class="text-xs text-brand-dark/70 font-medium">Creatividad Fluida</p>
+                    </div>
+                    <div>
+                        <span class="text-2xl md:text-3xl font-serif font-bold text-brand-purple">DirCom</span>
+                        <p class="text-xs text-brand-dark/70 font-medium">Estrategia Integral</p>
+                    </div>
+                    <div>
+                        <span class="text-2xl md:text-3xl font-serif font-bold text-brand-dark">+10</span>
+                        <p class="text-xs text-brand-dark/70 font-medium">Proyectos Disruptivos</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Hero Right Column Visual Photo Showcase -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                
+                <div class="relative w-72 h-96 sm:w-80 sm:h-[430px] lg:w-full lg:h-[480px] max-w-md">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-purple via-brand-yellow to-brand-orange rounded-[40px] transform rotate-6 scale-95 opacity-80 filter blur-sm animate-pulse-glow"></div>
+                    
+                    <div class="relative w-full h-full rounded-[36px] overflow-hidden border-4 border-white shadow-2xl bg-brand-bg group">
+                        <img src="input_file_0.png" alt="Ileana Avilés - ile Dircom" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/50 via-transparent to-transparent opacity-60">
+				         <img src="../../../Desktop/memories/2025/Imagen de WhatsApp 2025-11-07 a las 14.30.18_aa094606.jpg" width="768" height="1280" alt=""/></div>
+
+                        <div class="absolute bottom-4 left-4 right-4 glass-panel p-3 rounded-2xl flex items-center justify-between text-xs">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="font-semibold text-brand-dark">Ileana Avilés</span>
+                            </div>
+                            <span class="text-brand-orange font-serif italic font-bold">@ile.dircom</span>
+                        </div>
+                    </div>
+
+                    <div class="absolute -top-5 -left-5 glass-card px-4 py-2.5 rounded-2xl shadow-lg border border-brand-purple flex items-center gap-2 animate-float">
+                        <div class="w-8 h-8 rounded-full bg-brand-yellow flex items-center justify-center text-brand-dark font-bold text-xs">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-[10px] uppercase font-bold text-brand-dark/60">Enfoque</p>
+                            <p class="text-xs font-bold text-brand-dark">Estrategia y Concepto</p>
+                        </div>
+                    </div>
+
+                    <div class="absolute -bottom-6 -right-5 glass-card px-4 py-3 rounded-2xl shadow-lg border border-brand-orange flex items-center gap-3 animate-float" style="animation-delay: 2s;">
+                        <div class="w-8 h-8 rounded-full bg-brand-orange text-white flex items-center justify-center font-bold text-xs">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-[10px] uppercase font-bold text-brand-dark/60">Directo</p>
+                            <p class="text-xs font-bold text-brand-dark">7291 5680</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre-mi" class="py-20 px-4 md:px-8 relative">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="glass-panel rounded-3xl p-8 md:p-14 border border-brand-purple/30 relative overflow-hidden">
+                
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-yellow/30 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-5 flex justify-center">
+                      <div class="relative w-64 h-80 sm:w-72 sm:h-96 rounded-3xl overflow-hidden shadow-xl border-2 border-white/80 group">
+                           
+                            <div class="absolute inset-0 bg-brand-purple/10 mix-blend-multiply">
+						  <img src="../../../Desktop/memories/2025/Imagen de WhatsApp 2025-11-07 a las 14.30.18_aa094606.jpg" width="768" height="1280" alt=""/> </div>
+                            
+                            <div class="absolute bottom-3 left-3 right-3 glass-card p-3 rounded-xl text-center">
+                                <p class="text-xs font-semibold text-brand-dark">"Comunicación estratégica con alma creativa."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-block px-3 py-1 rounded-full bg-brand-purple/20 text-brand-dark text-xs font-bold uppercase tracking-wider">
+                            Sobre Mí
+                        </div>
+
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-dark">
+                            Dirigiendo la narrativa visual y estratégica de tu marca.
+                        </h2>
+
+                        <p class="text-brand-dark/80 leading-relaxed">
+                            Como <strong class="text-brand-dark">Director de Comunicación (Dircom) y Creadora de Contenido</strong>, entiendo la comunicación no solo como mensajes, sino como un sistema vivo. Fusiono la estructuración estratégica con la estética visual fluida para que cada proyecto transmita un propósito claro y resuene profundamente.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="p-4 rounded-2xl bg-white/60 border border-brand-purple/20">
+                                <div class="w-8 h-8 rounded-lg bg-brand-purple text-white flex items-center justify-center mb-2">
+                                    <i class="fa-solid fa-compass"></i>
+									
+                                </div>
+                              <h3 class="font-bold text-sm text-brand-dark">Manual de marca&nbsp;</h3>
+                              <p class="text-xs text-brand-dark/70 mt-1">Planes de comunicación integrales, posicionamiento de marca y manejo reputacional.</p>
+                                <p class="text-xs text-brand-dark/70 mt-1">&nbsp; 
+									<a href="https://drive.google.com/drive/folders/1ySs-n8mtm8kuDMiJh-6wDcaj0T_4dro5?usp=sharing" target="_blank" class="boton-proyectos">Abrir</a> </p>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-white/60 border border-brand-orange/20">
+                                <div class="w-8 h-8 rounded-lg bg-brand-orange text-white flex items-center justify-center mb-2">
+                                    <i class="fa-solid fa-palette"></i>
+                                </div>
+                                <h3 class="font-bold text-sm text-brand-dark">CV&nbsp;</h3>
+                                <p class="text-xs text-brand-dark/70 mt-1">Desarrollo de lenguaje visual, diseño de conceptos y dirección de arte disruptiva.</p>
+								<p class="text-xs text-brand-dark/70 mt-1">&nbsp; 
+									<a href="https://drive.google.com/drive/folders/1pOsSt5F0f1x4iBZFWOJlj1pv8RhnQjMO?usp=drive_link" target="_blank" class="boton-proyectos">Abrir</a> </p>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex flex-wrap gap-3">
+                            <span class="px-3 py-1.5 rounded-xl bg-brand-yellow/50 text-xs font-medium text-brand-dark">#EstrategiaDigital</span>
+                            <span class="px-3 py-1.5 rounded-xl bg-brand-purple/20 text-xs font-medium text-brand-dark">#Branding</span>
+                            <span class="px-3 py-1.5 rounded-xl bg-brand-orange/20 text-xs font-medium text-brand-dark">#DirecciónDeArte</span>
+                            <span class="px-3 py-1.5 rounded-xl bg-white/80 text-xs font-medium text-brand-dark">#PR y Medios</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-20 px-4 md:px-8 relative">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="text-xs uppercase tracking-widest font-bold text-brand-orange">Capacidades y Servicios</span>
+                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-brand-dark">Soluciones a la medida de tu proyección.</h2>
+                <p class="text-sm text-brand-dark/70">Transformamos ideas abstractas en ecosistemas de comunicación medibles y atractivos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="glass-card p-8 rounded-3xl space-y-4 relative group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-purple/20 text-brand-purple flex items-center justify-center text-2xl group-hover:bg-brand-purple group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-brand-dark">Dirección de Comunicación</h3>
+                    <p class="text-xs text-brand-dark/70 leading-relaxed">
+                        Diseño de mapas de comunicación interna y externa, relaciones públicas, boletines de prensa, vocería y gestión de reputación corporativa.
+                    </p>
+                    <ul class="text-xs space-y-2 text-brand-dark/80 pt-2 border-t border-brand-dark/10">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange text-[10px]"></i> Estrategia DirCom 360°</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange text-[10px]"></i> Media Relations y PR</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange text-[10px]"></i> Gestión de Crisis</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl space-y-4 relative group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-orange/20 text-brand-orange flex items-center justify-center text-2xl group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-bezier-curve"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-brand-dark">Identidad Visual y Branding</h3>
+                    <p class="text-xs text-brand-dark/70 leading-relaxed">
+                        Construcción de manuales de marca, sistemas de diseño, paletas cromáticas, tipografía y guiado estético de contenidos.
+                    </p>
+                    <ul class="text-xs space-y-2 text-brand-dark/80 pt-2 border-t border-brand-dark/10">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-purple text-[10px]"></i> Manuales de Identidad</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-purple text-[10px]"></i> Dirección de Fotografía</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-purple text-[10px]"></i> Tono de Voz de Marca</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl space-y-4 relative group">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-yellow/50 text-brand-dark flex items-center justify-center text-2xl group-hover:bg-brand-yellow transition-colors duration-300">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-brand-dark">Campañas Creativas</h3>
+                    <p class="text-xs text-brand-dark/70 leading-relaxed">
+                        Conceptualización de campañas publicitarias y sociales, copy creative, storytelling narrativo y producción de guiones.
+                    </p>
+                    <ul class="text-xs space-y-2 text-brand-dark/80 pt-2 border-t border-brand-dark/10">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange text-[10px]"></i> Conceptualización y Copy</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange text-[10px]"></i> Storytelling Emocional</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-orange text-[10px]"></i> Activaciones de Marca</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portafolio" class="py-20 px-4 md:px-8 relative">
+        <div class="max-w-7xl mx-auto space-y-10">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-purple">Casos de Éxito</span>
+                    <h2 class="text-3xl sm:text-5xl font-serif font-bold text-brand-dark mt-1">Portafolio Seleccionado</h2>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-2 p-1.5 glass-panel rounded-2xl">
+                    <button onclick="filterPortfolio('all')" class="filter-btn active-tab px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-brand-dark text-white" data-filter="all">Todos</button>
+                    <button onclick="filterPortfolio('dircom')" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all hover:bg-white/80" data-filter="dircom">Dirección DirCom</button>
+                    <button onclick="filterPortfolio('branding')" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all hover:bg-white/80" data-filter="branding">Identidad Visual</button>
+                    <button onclick="filterPortfolio('campana')" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold transition-all hover:bg-white/80" data-filter="campana">Campañas</button>
+                </div>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolioGrid">
+                
+                <!-- Project 1 -->
+                <div class="portfolio-item dircom glass-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openProjectModal('proj1')">
+                    <div class="relative h-60 bg-gradient-to-tr from-brand-purple via-brand-orange to-brand-yellow p-6 flex flex-col justify-between overflow-hidden">
+                        <div class="flex justify-between items-start z-10">
+                            <span class="px-3 py-1 rounded-full bg-white/80 text-brand-dark text-[10px] font-bold uppercase tracking-wider">Estrategia DirCom</span>
+                            <span class="w-8 h-8 rounded-full bg-white text-brand-dark flex items-center justify-center text-xs group-hover:scale-110 transition-transform"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                        </div>
+                        <div class="z-10">
+                            <p class="text-xs font-bold text-white/90">Ecosistema Institucional</p>
+                            <h3 class="text-2xl font-serif font-bold text-white">Rebranding y PR Corporativo</h3>
+                        </div>
+                        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-brand-dark/70 line-clamp-2">Reestructuración total de la arquitectura de comunicación interna y prensa para organización regional.</p>
+                        <div class="flex items-center gap-2 text-[11px] font-semibold text-brand-orange">
+                            <span>Ver detalles y Drive del proyecto</span>
+                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-item branding glass-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openProjectModal('proj2')">
+                    <div class="relative h-60 bg-gradient-to-br from-brand-yellow via-brand-orange to-brand-purple p-6 flex flex-col justify-between overflow-hidden">
+                        <div class="flex justify-between items-start z-10">
+                            <span class="px-3 py-1 rounded-full bg-white/80 text-brand-dark text-[10px] font-bold uppercase tracking-wider">Identidad Visual</span>
+                            <span class="w-8 h-8 rounded-full bg-white text-brand-dark flex items-center justify-center text-xs group-hover:scale-110 transition-transform"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                        </div>
+                        <div class="z-10">
+                            <p class="text-xs font-bold text-brand-dark/90">Lanzamiento Marca Gourmet</p>
+                            <h3 class="text-2xl font-serif font-bold text-brand-dark">Manual Cromático y Universo Visual</h3>
+                        </div>
+                        <div class="absolute -left-10 -bottom-10 w-48 h-48 bg-brand-purple/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-brand-dark/70 line-clamp-2">Creación de identidad completa, empaques y guía de estilo para redes sociales con paleta cálida.</p>
+                        <div class="flex items-center gap-2 text-[11px] font-semibold text-brand-orange">
+                            <span>Ver detalles y Drive del proyecto</span>
+                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-item campana glass-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openProjectModal('proj3')">
+                    <div class="relative h-60 bg-gradient-to-tr from-brand-dark via-brand-purple to-brand-orange p-6 flex flex-col justify-between overflow-hidden">
+                        <div class="flex justify-between items-start z-10">
+                            <span class="px-3 py-1 rounded-full bg-white/80 text-brand-dark text-[10px] font-bold uppercase tracking-wider">Campaña Creativa</span>
+                            <span class="w-8 h-8 rounded-full bg-white text-brand-dark flex items-center justify-center text-xs group-hover:scale-110 transition-transform"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                        </div>
+                        <div class="z-10">
+                            <p class="text-xs font-bold text-white/90">Impacto Social</p>
+                            <h3 class="text-2xl font-serif font-bold text-white">Cruz Roja: "Sumando donante, salvando vidas "</h3>
+                        </div>
+                        <div class="absolute -right-10 -top-10 w-48 h-48 bg-brand-orange/30 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-xs text-brand-dark/70 line-clamp-2">Campaña de marketing social y comunicación estratégica para la Cruz Roja Salvadoreña, enfocada en aumentar la donación voluntaria de sangre. Incluye investigación de audiencia, un concepto creativo e inspirador, un plan de medios radial y guiones para cuñas de 30 segundos. &nbsp;</p>
+                        <div class="flex items-center gap-2 text-[11px] font-semibold text-brand-orange">
+                            <span>Ver detalles y Drive del proyecto</span>
+                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Creative Process Timeline Section -->
+    <section id="metodologia" class="py-20 px-4 md:px-8 relative">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="text-xs uppercase tracking-widest font-bold text-brand-orange">Metodología</span>
+                <h2 class="text-3xl sm:text-5xl font-serif font-bold text-brand-dark">El Flujo Creativo</h2>
+                <p class="text-sm text-brand-dark/70">Un proceso estructurado pero flexible para garantizar resultados memorables.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                
+                <div class="glass-card p-6 rounded-3xl space-y-3 border-t-4 border-t-brand-purple">
+                    <span class="text-3xl font-serif font-bold text-brand-purple/50">01</span>
+                    <h3 class="font-serif font-bold text-lg text-brand-dark">Inmersión y Escucha</h3>
+                    <p class="text-xs text-brand-dark/70">Análisis profundo de la marca, diagnóstico de audiencias y definición de KPIs clave.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl space-y-3 border-t-4 border-t-brand-orange">
+                    <span class="text-3xl font-serif font-bold text-brand-orange/50">02</span>
+                    <h3 class="font-serif font-bold text-lg text-brand-dark">Conceptualización</h3>
+                    <p class="text-xs text-brand-dark/70">Creación de moodboards, mapas mentales, líneas narrativas y enfoques estéticos.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl space-y-3 border-t-4 border-t-brand-yellow">
+                    <span class="text-3xl font-serif font-bold text-brand-yellow">03</span>
+                    <h3 class="font-serif font-bold text-lg text-brand-dark">Ejecución y Arte</h3>
+                    <p class="text-xs text-brand-dark/70">Desarrollo de entregables visuales, copys, piezas de comunicación y prototipos.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl space-y-3 border-t-4 border-t-brand-dark">
+                    <span class="text-3xl font-serif font-bold text-brand-dark/50">04</span>
+                    <h3 class="font-serif font-bold text-lg text-brand-dark">Lanzamiento y Feedback</h3>
+                    <p class="text-xs text-brand-dark/70">Despliegue estratégico de campañas y monitoreo continuo de interacciones.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-20 px-4 md:px-8 relative">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="glass-panel rounded-3xl p-8 md:p-14 border border-brand-orange/30 shadow-2xl relative overflow-hidden">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-xs uppercase tracking-widest font-bold text-brand-orange">Contacto Directo</span>
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-dark">
+                            ¿Listo para hacer fluir tu marca?
+                        </h2>
+                        <p class="text-xs sm:text-sm text-brand-dark/70 leading-relaxed">
+                            Cuéntame sobre tu proyecto o agenda una sesión de consultoría inicial. Responderé a la brevedad.
+                        </p>
+
+                        <div class="space-y-4 pt-4">
+                            <a href="https://wa.me/50372915680" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl bg-white/70 hover:bg-white transition-all border border-emerald-500/30 group">
+                                <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] uppercase font-bold text-brand-dark/60">WhatsApp</p>
+                                    <p class="text-sm font-bold text-brand-dark">7291 5680</p>
+                                </div>
+                            </a>
+
+                            <a href="mailto:ileeaviless@gmail.com" class="flex items-center gap-4 p-4 rounded-2xl bg-white/70 hover:bg-white transition-all border border-brand-purple/30 group">
+                                <div class="w-10 h-10 rounded-full bg-brand-purple text-white flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] uppercase font-bold text-brand-dark/60">Correo Electrónico</p>
+                                    <p class="text-sm font-bold text-brand-dark">ileeaviless@gmail.com</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 bg-white/80 p-6 sm:p-8 rounded-3xl border border-brand-purple/20">
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-brand-dark mb-1">Nombre Completo</label>
+                                <input type="text" required placeholder="Tu nombre" class="w-full px-4 py-3 rounded-xl bg-brand-bg/50 border border-brand-dark/10 focus:outline-none focus:border-brand-orange text-xs text-brand-dark">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-brand-dark mb-1">Correo Electrónico</label>
+                                    <input type="email" required placeholder="correo@ejemplo.com" class="w-full px-4 py-3 rounded-xl bg-brand-bg/50 border border-brand-dark/10 focus:outline-none focus:border-brand-orange text-xs text-brand-dark">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-brand-dark mb-1">Servicio de Interés</label>
+                                    <select class="w-full px-4 py-3 rounded-xl bg-brand-bg/50 border border-brand-dark/10 focus:outline-none focus:border-brand-orange text-xs text-brand-dark">
+                                        <option>Dirección de Comunicación</option>
+                                        <option>Identidad Visual / Branding</option>
+                                        <option>Campañas Creativas</option>
+                                        <option>Consultoría General</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-brand-dark mb-1">Mensaje / Detalle del Proyecto</label>
+                                <textarea rows="4" required placeholder="Describe brevemente tus necesidades creativas..." class="w-full px-4 py-3 rounded-xl bg-brand-bg/50 border border-brand-dark/10 focus:outline-none focus:border-brand-orange text-xs text-brand-dark"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-orange text-white font-semibold py-3.5 rounded-xl hover:bg-brand-dark transition-colors duration-300 shadow-md text-xs sm:text-sm flex items-center justify-center gap-2">
+                                <span>Enviar Mensaje Directo</span>
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Project Details Modal Dynamic -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-brand-dark/60 backdrop-blur-md">
+        <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto animate-scale-up">
+            
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-brand-dark transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="modalContent" class="space-y-6">
+                <!-- Content injected via JS -->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-10 px-4 border-t border-brand-dark/10 text-center text-xs text-brand-dark/70">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-serif font-bold text-brand-dark">ile Dircom</span>
+                <span>• © 2026 Ileana Avilés. Todos los derechos reservados.</span>
+            </div>
+            <div class="flex items-center gap-4 text-base">
+                <a href="https://wa.me/50372915680" target="_blank" class="hover:text-emerald-600 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="mailto:ileeaviless@gmail.com" class="hover:text-brand-purple transition-colors"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* Interactive Background Organic Waves Animation */
+        const canvas = document.getElementById('waveCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        let mouse = { x: width / 2, y: height / 2 };
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        let step = 0;
+        const waveColors = ['rgba(184, 147, 195, 0.35)', 'rgba(243, 147, 64, 0.25)', 'rgba(250, 236, 11, 0.3)'];
+
+        function animateWaves() {
+            ctx.clearRect(0, 0, width, height);
+            step += 0.015;
+
+            waveColors.forEach((color, index) => {
+                ctx.beginPath();
+                ctx.fillStyle = color;
+
+                ctx.moveTo(0, height);
+                for (let x = 0; x <= width; x += 20) {
+                    let distanceToMouse = Math.abs(x - mouse.x) / width;
+                    let mouseFactor = (1 - distanceToMouse) * 20;
+
+                    let y = Math.sin(step + (x * 0.003) + index) * 35 + 
+                            Math.cos(step * 0.8 + index) * 20 + 
+                            (height * (0.65 + index * 0.1)) - mouseFactor;
+
+                    ctx.lineTo(x, y);
+                }
+                ctx.lineTo(width, height);
+                ctx.closePath();
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animateWaves);
+        }
+
+        window.onload = function() {
+            animateWaves();
+        };
+
+        /* Portfolio Filtering System */
+        function filterPortfolio(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('bg-brand-dark', 'text-white');
+                    btn.classList.remove('hover:bg-white/80');
+                } else {
+                    btn.classList.remove('bg-brand-dark', 'text-white');
+                    btn.classList.add('hover:bg-white/80');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        /* Modal Data & Functions with Google Drive Links */
+        const projectDetails = {
+            'proj1': {
+                title: 'Rebranding & PR Corporativo',
+                category: 'Dirección de Comunicación',
+                desc: 'Estrategia integral de reposicionamiento de marca y manejo de relaciones públicas. Se implementaron protocolos de comunicación interna, boletines directos y workshops creativos.',
+                stats: ['+120% alcance en prensa', '15 alianzas estratégicas', 'Diseño de identidad unificada'],
+                tags: ['DirCom', 'PR', 'Estrategia 360°'],
+                driveUrl: 'https://drive.google.com/drive/folders/TU_ENLACE_DRIVE_1' // <-- Reemplaza aquí con tu link de Google Drive
+            },
+            'proj2': {
+                title: 'Manual Cromático & Universo Visual',
+                category: 'Identidad Visual',
+                desc: 'Desarrollo del concepto estético con paletas cálidas y fluidas. Creación de manual de marca interactivo con especificaciones de tono de voz, grilla para redes y empaques sustentables.',
+                stats: ['Manual de Marca PDF/Web', 'Diseño de Packaging', 'Guía de Tono de Voz'],
+                tags: ['Branding', 'Diseño Gráfico', 'Paleta de Color'],
+                driveUrl: 'https://drive.google.com/drive/folders/TU_ENLACE_DRIVE_2' // <-- Reemplaza aquí con tu link de Google Drive
+            },
+            'proj3': {
+                title: 'Cruz Roja: "Sumando donantes, salvando vidas"',
+                category: 'Campaña Creativa',
+                desc: 'En este proyecto me encargué de liderar la investigación para analizar la problemática de salud pública y las reservas de sangre en El Salvador, definiendo el perfil del público meta y el buyer persona. Asimismo, trabajé en el branding y conceptualización de la campaña bajo el lema "Cruz Roja: Sumando donantes, salvando vidas", estableciendo el insight y el tono emocional, y desarrollé la idea y los guiones creativos para las cuñas radiales de 30 segundos orientadas a la acción.',
+                stats: ['Investigación', 'Branding y concepto', 'Idea y guionesx'],
+                tags: ['Creatividad', 'Storytelling', 'Digital'],
+                driveUrl: 'https://drive.google.com/file/d/1q-e8kLfeNzoyxkT0kFPPvKpXU82rilL9/view?usp=sharing' // <-- Reemplaza aquí con tu link de Google Drive
+            }
+        };
+
+        function openProjectModal(id) {
+            const data = projectDetails[id];
+            if (!data) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <span class="px-3 py-1 rounded-full bg-brand-orange/20 text-brand-orange text-[10px] font-bold uppercase">${data.category}</span>
+                <h2 class="text-2xl font-serif font-bold text-brand-dark mt-2">${data.title}</h2>
+                <p class="text-xs text-brand-dark/80 leading-relaxed">${data.desc}</p>
+
+                <div class="space-y-2 pt-2">
+                    <h4 class="text-xs font-bold text-brand-dark uppercase">Puntos Clave & Resultados:</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        ${data.stats.map(s => `<div class="p-3 rounded-xl bg-white/80 text-center text-xs font-semibold text-brand-dark border border-brand-purple/20">${s}</div>`).join('')}
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2 pt-2">
+                    ${data.tags.map(t => `<span class="px-2.5 py-1 rounded-lg bg-brand-purple/10 text-[11px] font-semibold text-brand-purple">${t}</span>`).join('')}
+                </div>
+
+                <div class="pt-4 border-t border-brand-dark/10 flex flex-wrap items-center justify-between gap-3">
+                    <a href="${data.driveUrl}" target="_blank" class="bg-brand-orange text-white text-xs font-semibold px-6 py-2.5 rounded-full hover:bg-brand-dark transition-colors flex items-center gap-2 shadow-md">
+                        <span>Ver Proyecto en Google Drive</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <a href="https://wa.me/50372915680?text=Hola%20ile,%20me%20interesa%20un%20proyecto%20similar%20a%20${encodeURIComponent(data.title)}" target="_blank" class="glass-card text-brand-dark text-xs font-semibold px-5 py-2.5 rounded-full hover:border-brand-purple transition-colors flex items-center gap-2">
+                        <span>Consultar por WhatsApp</span>
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            `;
+
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        /* Mobile Menu Toggle */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+
+        /* Contact Form Handler */
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = '<span>¡Mensaje Enviado con Éxito!</span> <i class="fa-solid fa-check"></i>';
+            btn.classList.remove('bg-brand-orange');
+            btn.classList.add('bg-emerald-600');
+            setTimeout(() => {
+                e.target.reset();
+                btn.innerHTML = '<span>Enviar Mensaje Directo</span> <i class="fa-solid fa-paper-plane"></i>';
+                btn.classList.remove('bg-emerald-600');
+                btn.classList.add('bg-brand-orange');
+            }, 3000);
+        }
+
+        /* Interactive Ambient Theme Toggle */
+        let vibesActive = false;
+        function toggleVibesMode() {
+            vibesActive = !vibesActive;
+            const btn = document.getElementById('vibesBtn');
+            if (vibesActive) {
+                document.body.style.backgroundColor = '#f7f8ee';
+                btn.classList.add('bg-brand-orange', 'text-white');
+            } else {
+                document.body.style.backgroundColor = '#eef1dc';
+                btn.classList.remove('bg-brand-orange', 'text-white');
+            }
+        }
+    </script>
+</body>
+</html>
